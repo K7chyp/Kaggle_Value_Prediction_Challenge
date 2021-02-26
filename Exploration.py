@@ -1,6 +1,6 @@
 class Exploration:
     
-    def __init__(self, train_df=train_df, test_df=test_df):
+    def __init__(self, train_df, test_df):
 
         self.train_ = train_df.copy()
         self.test_ = test_df.copy()
