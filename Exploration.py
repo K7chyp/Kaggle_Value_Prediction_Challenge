@@ -25,3 +25,12 @@ class Exploration:
             zero_count_dict[value] = self.find_local_max(local_dct)
 
         return zero_count_dict
+
+    def check_missing(self): 
+
+        missing_df = self.train_.isnull().sum(axis=0).reset_index()
+        missing_df.columns = ['column_name', 'missing_count']
+        missing_df = missing_df[missing_df['missing_count']>0]
+        missing_df = missing_df.sort_values(by='missing_count')
+
+        return missing_df
