@@ -1,3 +1,6 @@
+import seaborn as sns 
+import matplotlib.pyplot as plt
+
 class Visualisation:
 
     def __init__(self, train_df, test_df):
