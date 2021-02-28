@@ -3,9 +3,6 @@ class Preprocessing:
         self.train_ = train_df.copy()
         self.test_ = test_df.copy()
 
-        self.remove_constant_columns()
-        self.drop_sparse()
-
     def remove_constant_columns(self):
 
         col_rm = []
@@ -23,3 +20,8 @@ class Preprocessing:
             if len(np.unique(self.train_[f])) < 2:
                 self.train_.drop(f, axis=1, inplace=True)
                 self.test_.drop(f, axis=1, inplace=True)
+
+    def prerproce_it(self): 
+      self.remove_constant_columns()
+      self.drop_sparse()
+      return self.train_, self.test
