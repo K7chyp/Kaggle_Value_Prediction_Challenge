@@ -10,35 +10,35 @@ from sklearn.metrics import accuracy_score
 
 class Model(): 
 
-	def __init__(self, train, test): 
-		self.train = train
-		self.test = test
+    def __init__(self, train, test): 
+        self.train = train
+        self.test = test
 
-	def post_processinig(self): 
+    def post_processinig(self): 
 
-		lab_enc = preprocessing.LabelEncoder()
-		y  = lab_enc.fit_transform(self.train.target)
+        lab_enc = preprocessing.LabelEncoder()
+        y  = lab_enc.fit_transform(self.train.target)
 
-		return y
+        return y
 
-	def split(self): 
+    def split(self): 
 
-		y = self.post_processinig()
-		X_train, X_test, y_train, y_test = train_test_split(self.train, 
-													y, random_state=42)
-		return X_train, X_test, y_train, y_test 
+        y = self.post_processinig()
+        X_train, X_test, y_train, y_test = train_test_split(self.train, 
+                                                    y, random_state=42)
+        return X_train, X_test, y_train, y_test 
 
-	def classifier(self)
+    def classifier(self)
 
-		X_train, X_test, y_train, y_test = self.split()
+        X_train, X_test, y_train, y_test = self.split()
 
-		log_clf = LogisticRegression(random_state=42)
-		rnd_clf = RandomForestClassifier(random_state=42)
-		svm_clf = SVC(random_state=42)
+        log_clf = LogisticRegression(random_state=42)
+        rnd_clf = RandomForestClassifier(random_state=42)
+        svm_clf = SVC(random_state=42)
 
-		voting_clf = VotingClassifier(
-		    estimators=[('lr', log_clf), 
-		                ('rf', rnd_clf),
-		                ('svc', svm_clf)],
-		                voting='hard')
-		return voting_clf.fit(X_train, y_train)
+        voting_clf = VotingClassifier(
+            estimators=[('lr', log_clf), 
+                        ('rf', rnd_clf),
+                        ('svc', svm_clf)],
+                        voting='hard')
+        return voting_clf.fit(X_train, y_train)
