@@ -1,3 +1,5 @@
+import numpy as np
+
 class Preprocessing:
     def __init__(self, train_df, test_df):
         self.train_ = train_df.copy()
