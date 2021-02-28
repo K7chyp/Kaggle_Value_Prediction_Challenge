@@ -26,4 +26,4 @@ class Preprocessing:
     def prerproce_it(self): 
       self.remove_constant_columns()
       self.drop_sparse()
-      return self.train_, self.test
+      return self.train_, self.test_
